@@ -28,8 +28,6 @@ Tested at
 
 Shuffled MNIST data was used for the experiment with three sequential tasks. The first dataset is the same as the original MNIST dataset. In the second and third tasks, the input pixels of all images are shuffled with a fixed, random permutation.
 
-* MNIST
-
 no need to download mnist dataset. The download code is included. 
 
 ## Training
