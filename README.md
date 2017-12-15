@@ -1,7 +1,7 @@
 Overcoming Catastrophic Forgetting by Incremental Moment Matching (IMM)
 ===================================
 
-IMM incrementally matches the moment of the posterior distribution of neural networks, which is trained for the first and the second task respectively.
+IMM incrementally matches the moment of the posterior distribution of neural networks, which is trained for the first and the second task respectively. The Experiment is only for the shuffled MNIST task. 
 
 ## Enviroment
 
