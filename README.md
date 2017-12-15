@@ -1,7 +1,21 @@
 Overcoming Catastrophic Forgetting by Incremental Moment Matching (IMM)
 ===================================
 
-IMM incrementally matches the moment of the posterior distribution of neural networks, which is trained for the first and the second task respectively. The Experiment is only for the shuffled MNIST task. 
+IMM incrementally matches the moment of the posterior distribution of neural networks, which is trained for the first and the second task respectively. The experiment is only for the shuffled MNIST task.
+
+## Reference
+
+[1] [Sang-Woo Lee, Jin-Hwa Kim, Jaehyun Jun, Jung-Woo Ha and Byoung-Tak Zhang. Overcoming Catastrophic Forgetting by Incremental Moment Matching. In Advances in Neural Information Processing Systems, 2017.](https://arxiv.org/abs/1703.08475)
+
+If you use this code as part of any published research, we'd really appreciate it if you could cite the following paper:
+
+    @inproceedings{Lee2017,
+    author = {Lee, Sang-Woo Lee and Kim, Jin-Hwa and Jun, Jaehyun and Ha, Jung-Woo and Zhang, Byoung-Tak},
+    booktitle = {Advances In Neural Information Processing Systems 30},
+    title = {{Overcoming Catastrophic Forgetting by Incremental Moment Matching (IMM)}},
+    year = {2017}
+    }
+
 
 ## Enviroment
 
@@ -11,6 +25,8 @@ Tested at
 * Tensorflow v1.4.0
 
 ## Dataset
+
+Shuffled MNIST data was used for the experiment with three sequential tasks. The first dataset is the same as the original MNIST dataset. In the second and third tasks, the input pixels of all images are shuffled with a fixed, random permutation.
 
 * MNIST
 
