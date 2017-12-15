@@ -33,8 +33,9 @@ def ZeroLayers(sess, L):
         sess.run(L[l].b.assign(np.zeros(shape[-1])))
 
 def AddLayers(sess, L1, L2, Ltr):
+    # TODO: ad-hoc, it should be resolved in a natural way.
     op = []
-    for l in xrange(len(L1)):
+    for l in range(len(L1)):
         v = sess.run([L1[l].W, L2[l].W, L1[l].b, L2[l].b])
         op += [Ltr[l].W.assign(v[0]+v[1]), Ltr[l].b.assign(v[2]+v[3])]
     sess.run(op)
