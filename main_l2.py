@@ -36,7 +36,7 @@ lmbda = FLAGS.regularizer
 alpha = FLAGS.alpha
 optimizer = FLAGS.optimizer
 learning_rate = FLAGS.learning_rate
-epoch = FLAGS.epoch
+epoch = int(FLAGS.epoch)
 batch_size = FLAGS.batch_size
 
 no_of_task = 3
@@ -64,7 +64,7 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         if i > 0: 
             model_utils.CopyLayers(sess, mlp.Layers, mlp.Layers_reg)    # Regularization from weight of pre-task
 
-        mlp.Train(sess, x[i], y[i], np.concatenate(x_), np.concatenate(y_), epoch, mb=batch_size, resultsForSaving=resultsForSaving)
+        mlp.Train(sess, x[i], y[i], np.concatenate(x_), np.concatenate(y_), epoch, mb=batch_size)
         mlp.Test(sess, [[x[i],y[i]," train"], [x_[i],y_[i]," test"]])
 
         if mean_imm or mode_imm:
@@ -72,7 +72,7 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         if mode_imm:
             FM.append(mlp.CalculateFisherMatrix(sess, x[i], y[i]))
 
-    mlp.TestAllTasks(sess, x_, y_, resultsForSaving=resultsForSaving)
+    mlp.TestAllTasks(sess, x_, y_)
 
     alpha_list = [(1-alpha)/(no_of_task-1)] * (no_of_task-1)
     alpha_list.append(alpha)
@@ -86,9 +86,9 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         LW = model_utils.UpdateMultiTaskLwWithAlphas(L_copy[0], alpha_list, no_of_task)
         model_utils.AddMultiTaskLayers(sess, L_copy, mlp.Layers, LW, no_of_task)
         ret = mlp.TestTasks(sess, x, y, x_, y_, debug=False)
-        utils.PrintResults(alpha, ret, resultsForSaving=resultsForSaving)
+        utils.PrintResults(alpha, ret)
 
-        mlp.TestAllTasks(sess, x_, y_, resultsForSaving=resultsForSaving)
+        mlp.TestAllTasks(sess, x_, y_)
 
     ######################### Mode-IMM ##########################
     if mode_imm:
@@ -99,9 +99,9 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         LW = model_utils.UpdateMultiTaskWeightWithAlphas(FM, alpha_list, no_of_task)
         model_utils.AddMultiTaskLayers(sess, L_copy, mlp.Layers, LW, no_of_task)
         ret = mlp.TestTasks(sess, x, y, x_, y_, debug=False)
-        utils.PrintResults(alpha, ret, resultsForSaving=resultsForSaving)
+        utils.PrintResults(alpha, ret)
 
-        mlp.TestAllTasks(sess, x_, y_, resultsForSaving=resultsForSaving)
+        mlp.TestAllTasks(sess, x_, y_)
 
     print("")
     print("Time: %.4f s" % (time.time()-start))

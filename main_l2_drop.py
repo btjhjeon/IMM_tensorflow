@@ -38,7 +38,7 @@ lmbda = FLAGS.regularizer
 alpha = FLAGS.alpha
 optimizer = FLAGS.optimizer
 learning_rate = FLAGS.learning_rate
-epoch = FLAGS.epoch
+epoch = int(FLAGS.epoch)
 batch_size = FLAGS.batch_size
 
 no_of_task = 3
