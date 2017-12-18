@@ -94,7 +94,7 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         print("Main experiment on L2 + Drop-transfer + Mean-IMM, shuffled MNIST")
         print("============== Train task #%d (Mean-IMM) ==============" % no_of_task)
 
-        LW = model_utils.UpdateMultiTaskLwWithAlphas(LW, L_copy[0], alpha_list, no_of_task)
+        LW = model_utils.UpdateMultiTaskLwWithAlphas(L_copy[0], alpha_list, no_of_task)
         model_utils.AddMultiTaskLayers(sess, L_copy, mlp.Layers, LW, no_of_task)
         ret = mlp.TestTasks(sess, x, y, x_, y_, debug=False)
         utils.PrintResults(alpha, ret)
@@ -107,7 +107,7 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
         print("Main experiment on L2 + Drop-transfer + Mode-IMM, shuffled MNIST")
         print("============== Train task #%d (Mode-IMM) ==============" % no_of_task)
 
-        LW = model_utils.UpdateMultiTaskWeightWithAlphas(LW, FM, alpha_list, no_of_task)
+        LW = model_utils.UpdateMultiTaskWeightWithAlphas(FM, alpha_list, no_of_task)
         model_utils.AddMultiTaskLayers(sess, L_copy, mlp.Layers, LW, no_of_task)
         ret = mlp.TestTasks(sess, x, y, x_, y_, debug=False)
         utils.PrintResults(alpha, ret)
