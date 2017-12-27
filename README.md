@@ -17,7 +17,7 @@ If you use this code as part of any published research, we'd really appreciate i
     }
 
 
-## Enviroment
+## Environment
 
 Tested at
 
