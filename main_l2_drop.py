@@ -56,7 +56,7 @@ with tf.Session(config=tf.ConfigProto(gpu_options=tf.GPUOptions(allow_growth=Tru
     else:
         keep_prob_info = [1.0-drop_rate/2, 1.0-drop_rate, 1.0-drop_rate]
 
-    mlp = imm.TransferNN(no_of_node, (optimizer, learning_rate))
+    mlp = imm.TransferNN(no_of_node, (optimizer, learning_rate), keep_prob_info=keep_prob_info)
     mlp.RegPatch(lmbda)
 
     sess.run(tf.global_variables_initializer())
